@@ -1,0 +1,44 @@
+@if (apiData){
+  <div class="row">
+    <div class="col-12 d-flex justify-content-end">
+      <ngb-pagination (pageChange)="loadCharacters($event)"
+        [collectionSize]="apiData.info.count"
+        [(page)]="page"
+        [pageSize]="20"
+        [maxSize]="3"
+        [rotate]="true"
+        [ellipses]="true"
+        [boundaryLinks]="true"
+      />
+    </div>
+    <div class="col-12 my-2">
+      <h3 class="text-primary text-center border shadow-sm p-2 rounded-1">
+        Hay un total de {{ apiData.info.count }} personajes en esta API
+      </h3>
+    </div>
+    @for (char of apiData.results;track char.id){
+    <div class="col-md-3 my-2">
+      <div class="card shadow" [routerLink]="'/characters/detail/'+char.id">
+        <div class="card-header bg-primary-subtle">
+          <div class="card-title py-2 px-1">
+            <h5>{{char.name}}</h5>
+          </div>
+        </div>
+        <img [src]="char.image" alt="" class="card-img-top">
+        <div class="card-body ">
+          <p class="card-text"><strong>Gender: </strong>
+            <span class="text-primary">{{char.gender}}</span>
+          </p>
+          <p class="card-text"><strong>Gender: </strong>
+            <span class="text-primary">{{char.status}}</span>
+          </p>
+        </div>
+        <div class="card-footer">
+          {{char.created | date: 'longDate'}}
+        </div>
+      </div>
+    </div>
+    }
+  </div>
+}
+

@@ -1,0 +1,87 @@
+<div class="card shadow mt-5">
+
+
+  <div class="card-header bg-primary-subtle">
+    <div class="card-title text-center py-2 px-1">
+      <div class="row">
+        <div class="col-1 d-flex justify-content-between">
+          <button class="btn btn-primary me-1" (click)="loadPage(-1)">&laquo;</button>
+          <button class="btn btn-primary" (click)="loadPage(1)">&raquo;</button></div>
+        <div class="col-11"><h5>{{ char.name }}</h5></div>
+      </div>
+
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4 text-center">
+      <img [src]="char.image" alt="" class="img-fluid p-3 rounded-circle">
+    </div>
+
+    <div class="col-md-4">
+      <div class="card-body ">
+        <p class="card-text"><strong>Gender: </strong>
+          <span class="text-primary">{{ char.gender }}</span>
+        </p>
+        <p class="card-text"><strong>Status: </strong>
+          <span class="text-primary">{{ char.status }}</span>
+        </p>
+        <p class="card-text"><strong>Type: </strong>
+          @if (char.type !== '') {
+            <span class="text-primary">{{ char.type }}</span>
+        } @else {
+            <span class="text-primary">Common human</span>
+          }
+        </p>
+        <p class="card-text"><strong>Species: </strong>
+          <span class="text-primary">{{ char.species }}</span>
+        </p>
+        <p class="card-text"><strong>Origin: </strong>
+          <span class="text-primary">{{ char.origin.name }}</span>
+        </p>
+        <p class="card-text"><strong>Location: </strong>
+          <span class="text-primary">{{ char.location.name }}</span>
+        </p>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card-body ">
+        <div class="accordion" id="accordionLoc">
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapseAcc"
+                      aria-expanded="false"
+                      aria-controls="collapseAcc">
+                Locations
+              </button>
+            </h2>
+            <div id="collapseAcc"
+                 class="accordion-collapse collapse"
+                 data-bs-parent="#accordionLoc">
+              <div class="accordion-body overflow-y-scroll">
+                <ul>
+                  @for (item of char.episode; track item) {
+                    <li class="list-group-item small">{{ item }}</li>
+                  }
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+
+    </div>
+    <div class="col-12">
+      <div class="card-footer text-end">
+        {{ char.created | date: 'longDate' }}
+      </div>
+    </div>
+
+  </div>
+
+</div>

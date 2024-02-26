@@ -1,0 +1,9 @@
+.card:hover{
+  border: solid var(--bs-primary) 1px ;
+  transform: scale(103%);
+  transition-duration: 0.8s;
+  cursor: pointer;
+}
+.card{
+  transition-duration: 0.8s;
+}
