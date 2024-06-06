@@ -1,0 +1,47 @@
+.card{
+  /* Cuanto tarda en volver al estado original tras una animación */
+  transition: .5s;
+}
+.card:hover{
+  /* Cuanto va a durar la animación */
+  transition: 1s;
+  cursor: pointer;
+  border: 1px solid blueviolet;
+
+  .my-img{
+    /* Realizamos una animación que aumentará el tamaño de la imagen un 10% */
+    transform: scale(1.1);
+  }
+}
+
+.avatar-container{
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.img-container{
+  height: 90px;
+  width: 90px;
+  z-index: 1;
+  border-radius: 50%;
+  box-shadow: 0 2px 4px 4px #cfe2ff;
+  /* Importante poner el overflow a hidden para que la imagen no sobresalga del contenedor al aumentar el tamaño */
+  overflow: hidden;
+}
+
+.my-img{
+  height: 100%;
+  width: 100%;
+  transition: .5s;
+}
+
+/* Clase para centrar el spinner en la pantalla */
+.loading-container{
+  width: 100% !important;
+  height: 50vh !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

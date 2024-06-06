@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import {CharListComponent} from "./components/char-list/char-list.component";
 import {CharDetailComponent} from "./components/char-detail/char-detail.component";
+import {DatosApiComponent} from "./components/datos-api/datos-api.component";
 
 export const routes: Routes = [
   {
@@ -11,6 +12,10 @@ export const routes: Routes = [
   {
     path: 'characters/list',
     component: CharListComponent,
+  },
+  {
+    path: 'users',
+    component: DatosApiComponent,
   },
   {
     path: 'characters/detail/:id',

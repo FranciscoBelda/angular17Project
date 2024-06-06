@@ -1,0 +1,58 @@
+<!-- Empezamos protegiendo nuestra Aplicación para que solo renderice
+la información cuando tengamos información de la API -->
+@defer (when apiData){
+  <div class="row">
+    <div class="col-12 my-2">
+      <!-- Mostramos los elementos que tiene la API accediendo al objeto info de nuestra data -->
+      <h3 class="text-primary text-center border shadow-sm p-2 rounded-1">
+        Hay un total de {{ apiData.info.results }} usuarios por página en esta API
+      </h3>
+    </div>
+    <!-- Iteramos la colección de usuarios, para mostrar una tarjeta por cada usuario de la API -->
+    @for (user of apiData.results;track user.id){
+      <div class="col-xl-3 col-lg-4  col-sm-6 my-2">
+        <div class="card shadow">
+          <div class="card-header bg-primary-subtle">
+            <div class="card-title py-2 px-1">
+              <h5>{{user.name.title}} {{user.name.first}} {{user.name.last}}</h5>
+            </div>
+          </div>
+          <div class="avatar-container mt-3">
+            <div class="img-container" >
+              <!-- Con ngStyle le aplicamos un estilo a este div, dependiendo de cada usuario del array -->
+              <div class="my-img" [ngStyle]="{background: 'url('+ user.picture.large +')  center / 90px 90px no-repeat'}"></div>
+
+            </div>
+          </div>
+
+          <div class="card-body ">
+            <p class="card-text"><strong>Gender: </strong>
+              <span class="text-primary">{{user.gender}}</span>
+            </p>
+            <p class="card-text"><strong>Email: </strong><br>
+              <span class="text-primary">{{user.email}}</span>
+            </p>
+          </div>
+          <div class="card-footer">
+            <!-- Pasamos la fecha de cumpleaños por un pipe date para especificar como la queremos mostrar -->
+            {{user.dob.date | date: 'longDate'}}
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+  <!-- Usamos un placeholder para mostrar un Spinner mientras carga la información de la API -->
+} @placeholder (minimum 2s) {
+  <div class="row">
+    <div class="col-12 my-2">
+      <!-- Mostramos los elementos que tiene la API accediendo al objeto info de nuestra data -->
+      <h3 class="text-primary text-center border shadow-sm p-2 rounded-1">
+        <div class="spinner-border text-info" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </h3>
+    </div>
+  </div>
+}
+
+
